@@ -3,7 +3,7 @@
         <form>
             <div class="col-md-6 col-md-offset-3 form-group">
                 <label>Quote</label>
-                <textarea class="form-control" rows="3" v-model="quote"></textarea>        
+                <textarea class="form-control" rows="3" v-model.trim="quote"></textarea>        
             </div>
             <div class="col-md-6 col-md-offset-3 form-group">
                 <button class="btn btn-primary" @click.prevent="createNewQuote">Add Quote</button>  
@@ -21,9 +21,13 @@
        },
        methods:{
            createNewQuote(){
-               this.$emit('quoteAddEmit',this.quote);
-               this.quote = '';
-           }
+               if(this.quote == ''){
+                   alert('Please enter something')
+               }else{
+                   this.$emit('quoteAddEmit',this.quote);
+                   this.quote = '';
+               }
+           },
        }
     }
 </script>
